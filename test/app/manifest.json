@@ -1,0 +1,37 @@
+{
+  	"name": "__MSG_appName__",
+  	"description": "__MSG_appDescription__",
+  	"version": "1",
+  	"manifest_version": 2,
+  	"default_locale": "en",
+  	"permissions": [
+  		"adview (dev)",
+  		"alarms",
+  		"app.runtime",
+  		"app.window",
+  		"audio (dev)",
+  		"clipboardRead",
+  		"clipboardWrite",
+  		{
+  			"fileSystem": [
+  				"write",
+  				"retainEntries",
+  				"directory"
+  			]
+  		},
+  		"fullscreen",
+  		"idle",
+  		"notifications",
+  		"pushMessaging",
+  		"storage",
+  		"syncFileSystem",
+  		"unlimitedStorage",
+  		"webview",
+  		"<all_urls>",
+  		"http://*/*",
+  		"https://*/*",
+  		"http://127.0.0.1/*",
+  		"chrome-extension://*/*"
+  	],
+  	"web_accessible_resources": "images/icon-48.png"
+  }

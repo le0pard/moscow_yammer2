@@ -1,0 +1,12 @@
+{
+  "name": "moscow-yammer",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "2.1.0",
+    "modernizr": "~2.7.1",
+    "requirejs": "~2.1.10",
+    "sass-bootstrap": "~3.0.2",
+    "almond": "~0.2.9"
+  },
+  "devDependencies": {}
+}
