@@ -3,5 +3,6 @@ temp
 .tmp
 dist
 dev
+package
 .sass-cache
 app/bower_components
