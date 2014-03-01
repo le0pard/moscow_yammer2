@@ -1,9 +1,11 @@
 # Listens for the app launching then creates the window
 chrome.app.runtime.onLaunched.addListener ->
-  width = 500
-  height = 300
+  width = 800
+  height = 600
   chrome.app.window.create "index.html",
-    id: "main"
+    id: "moscow_yammer"
+    minWidth: width
+    minHeight: height
     bounds:
       width: width
       height: height

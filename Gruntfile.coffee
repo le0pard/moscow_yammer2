@@ -47,17 +47,21 @@ module.exports = (grunt) ->
           "autoprefixer"
         ]
 
+      static:
+        files: ["<%= yeoman.app %>/**/*.{html,png,ico,gif,jpg,jpeg,webp,json}"]
+        tasks: ["copy:dev"]
+
       livereload:
         options:
           livereload: "<%= connect.livereload.options.livereload %>"
 
         files: [
-          "<%= yeoman.dev %>/*.html"
-          "<%= yeoman.dev %>/styles/{,*/}*.css"
-          "<%= yeoman.dev %>/scripts/{,*/}*.js"
-          "<%= yeoman.dev %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
-          "<%= yeoman.dev %>/manifest.json"
-          "<%= yeoman.dev %>/_locales/{,*/}*.json"
+          "<%= yeoman.app %>/*.html"
+          "<%= yeoman.app %>/styles/{,*/}*.css"
+          "<%= yeoman.app %>/scripts/{,*/}*.js"
+          "<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
+          "<%= yeoman.app %>/manifest.json"
+          "<%= yeoman.app %>/_locales/{,*/}*.json"
         ]
 
     coffee:
@@ -216,6 +220,13 @@ module.exports = (grunt) ->
           dest: "<%= yeoman.dist %>"
         ]
 
+    uncss:
+      options:
+        ignore: [/^\.js/]
+      dist:
+        files:
+          "<%= yeoman.dist %>/styles/main.css": ["<%= yeoman.dist %>/index.html"]
+
 
     # By default, your `index.html`'s <!-- Usemin block --> will take care of
     # minification. These next options are pre-configured if you do not wish
@@ -284,11 +295,20 @@ module.exports = (grunt) ->
 
     concurrent:
       dist: [
-        "compass:dev"
         "imagemin"
         "svgmin"
         "htmlmin"
       ]
+
+    rev:
+      dist:
+        files:
+          src: [
+            "<%= yeoman.dist %>/scripts/{,*/}*.js"
+            "<%= yeoman.dist %>/styles/{,*/}*.css"
+            #"<%= yeoman.dist %>/images/{,*/}*.{gif,jpeg,jpg,png,webp}"
+            #"<%= yeoman.dist %>/fonts/{,*/}*.*"
+          ]
 
     chromeManifest:
       dist:
@@ -298,7 +318,7 @@ module.exports = (grunt) ->
             target: "scripts/background.js"
             exclude: ["scripts/chromereload.js"]
 
-        src: "<%= yeoman.app %>"
+        src: "<%= yeoman.dev %>"
         dest: "<%= yeoman.dist %>"
 
     compress:
@@ -346,9 +366,11 @@ module.exports = (grunt) ->
     "useminPrepare"
     "concurrent:dist"
     "copy:dist"
-    "cssmin"
     "concat"
+    "uncss"
+    "cssmin"
     "uglify"
+    "rev"
     "usemin"
     "compress"
   ]
