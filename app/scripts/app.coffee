@@ -1,4 +1,2 @@
-"use strict"
-document.addEventListener "DOMContentLoaded", (->
-
-), false
+window.MSCWYApp = Ember.Application.create
+  LOG_TRANSITIONS: true

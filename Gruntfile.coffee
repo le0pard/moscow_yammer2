@@ -51,9 +51,9 @@ module.exports = (grunt) ->
         files: ["<%= yeoman.app %>/**/*.{html,png,ico,gif,jpg,jpeg,webp,json}"]
         tasks: ["copy:dev"]
 
-      handlebars:
+      emberTemplates:
         files: ["<%= yeoman.app %>/scripts/templates/**/*.hbs"]
-        tasks: ["handlebars"]
+        tasks: ["emberTemplates"]
 
       livereload:
         options:
@@ -68,11 +68,12 @@ module.exports = (grunt) ->
           "<%= yeoman.app %>/_locales/{,*/}*.json"
         ]
 
-    handlebars:
+    emberTemplates:
       options:
-        namespace: 'HBS'
-        processName: (filename) ->
-          filename.replace(/^scripts\/templates\//, "").replace(/\.hbs$/, "")
+        precompile: true
+        templateBasePath: /^app\/scripts\/templates\//
+        templateName: (filename) ->
+          filename.replace(/\.hbs$/, "")
 
       compile:
         files:
@@ -352,7 +353,7 @@ module.exports = (grunt) ->
     "clean:dev"
     "copy:dev"
     "coffee:dev"
-    "handlebars"
+    "emberTemplates"
     "compass:dev"
     "autoprefixer"
     "jshint"
