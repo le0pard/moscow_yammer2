@@ -72,8 +72,8 @@ module.exports = (grunt) ->
       options:
         precompile: true
         templateBasePath: /^app\/scripts\/templates\//
-        templateName: (filename) ->
-          filename.replace(/\.hbs$/, "")
+        #templateName: (filename) ->
+        #  filename.replace(/\.hbs$/, "")
 
       compile:
         files:
